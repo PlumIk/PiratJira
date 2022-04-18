@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication7.Data.Examples.EmployeeEx>
+
+<h1>Список пиратов</h1>
+
+<p>
+    <a asp-action="Create">Добавить пирата</a>
+</p>
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Фильтры</a>
+          <div class="dropdown-menu">
+            @using (Html.BeginForm())
+            {
+                 <p>
+                    <label for="text">В текстовом поле есть: </label>
+                    <input type="text" name="searchNameString"/>
+                </p> 
+                <p>
+                    <input type="submit" value="Поиск" />
+                </p>
+
+            }
+          </div>
+ </li>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PatronymicSortParm"]">@Html.DisplayNameFor(model => model.Patronymic)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SurnameSortParm"]">@Html.DisplayNameFor(model => model.Surname)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EmailSortParm"]">@Html.DisplayNameFor(model => model.Email)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Исправить данные</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeId">Подробнееs</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

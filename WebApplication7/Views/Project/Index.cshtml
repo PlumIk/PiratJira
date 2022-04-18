@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WebApplication7.Data.Examples.ProjectEx>
+
+<h1>Список квестов</h1>
+
+<p>
+    <a asp-action="Create">Добавить квест</a>
+</p>
+<p>
+    <a asp-controller="ProjectEmplyees" asp-action="Create">Добавть пирата на квест</a>
+</p>
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Фильтры</a>
+          <div class="dropdown-menu">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    <label for="text">В текстовом поле есть: </label>
+                    <input type="text" name="searchNameString"/>
+                </p> 
+                
+                <p>
+                    <label for="date">Задача выполняется с: </label>
+                    <input type="date" value="StartDate" name="StartDate"/>
+                    <label for="date">Задача выполняется до: </label>
+                    <input type="date" name="EndDate"/>
+                </p>
+                <p>
+                    <label for="date">Приоритет от: </label>
+                    <input type="number" max="15" min="1" step="1" name="MinOrder"/>
+                    <label type="number">Приоритет до: </label>
+                    <input type="number" max="15" min="1" step="1"  name="MaxOrder"/>
+                </p>
+                <p>
+                    <input type="submit" value="Поиск" />
+                </p>
+
+            }
+
+          </div>
+ </li>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ProjectNameSortParm"]">@Html.DisplayNameFor(model => model.ProjectName)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CustomerCompanyNameSortParm"]">@Html.DisplayNameFor(model => model.CustomerCompanyName)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PerformerCompanyNameSortParm"]">@Html.DisplayNameFor(model => model.PerformerCompanyName)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StartDateSortParm"]">@Html.DisplayNameFor(model => model.StartDate)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EndDateSortParm"]">@Html.DisplayNameFor(model => model.EndDate)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OrderSortParm"]">@Html.DisplayNameFor(model => model.Order)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerCompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerformerCompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProjectId">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.ProjectId">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProjectId">Удалить</a> |
+                <a asp-controller="ProjectEmplyees" asp-action="Index" asp-route-id="@item.ProjectId">Исполнители</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

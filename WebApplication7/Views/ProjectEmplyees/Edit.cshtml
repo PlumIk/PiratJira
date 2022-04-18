@@ -1,0 +1,33 @@
+﻿@model WebApplication7.Data.Examples.ProjectEmplyeeEx
+
+<h1>Изминить полномочия пирата</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmployeeID" />
+            <input type="hidden" asp-for="ProjectID" />
+            <div class="form-group">
+                <label asp-for="EmployeeID" class="control-label"></label>
+                @Model.EmployeeName
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectID" class="control-label"></label>
+                @Model.Project_oneName
+            </div>
+            <div class="form-group">
+                <label asp-for="IsManager" class="control-label"></label>
+                <select asp-for="IsManager" class ="form-control" asp-items="ViewBag.IsManager"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Project" asp-action="Index">К списку квестов</a>
+</div>
+

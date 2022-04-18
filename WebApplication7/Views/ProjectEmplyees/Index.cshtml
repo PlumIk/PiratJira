@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication7.Data.Examples.ProjectEmplyeeEx>
+
+
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Добавть пирата на квест</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsManager)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project_oneName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsManager)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new {  ide = item.EmployeeID, idp = item.ProjectID  })
+                @Html.ActionLink("Удалить", "Delete", new {  ide = item.EmployeeID, idp = item.ProjectID  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Project" asp-action="Index">К списку квестов</a>
+</div>
