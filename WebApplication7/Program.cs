@@ -20,13 +20,22 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-using (var scope = app.Services.CreateScope())
+try
 {
-    var services = scope.ServiceProvider;
+    using (var scope = app.Services.CreateScope())
+    {
 
-    var context = services.GetRequiredService<ApplicationDbContext>();
-    context.Database.EnsureCreated();
-    DbInitializer.Initialize(context);
+        var services = scope.ServiceProvider;
+
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        context.Database.EnsureCreated();
+        DbInitializer.Initialize(context);
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Database error:"+ ex.ToString());
+    return;
 }
 
 app.UseHttpsRedirection();

@@ -39,6 +39,6 @@ namespace WebApplication7.Data
         
         public DbSet<Project> Project { get; set; } = null!;
         public DbSet<Employee> Employee { get; set; } = null!;
-        public DbSet<WebApplication7.Models.ProjectEmplyee> ProjectEmplyee { get; set; }
+        public DbSet<ProjectEmplyee> ProjectEmplyee { get; set; }
     }
 }

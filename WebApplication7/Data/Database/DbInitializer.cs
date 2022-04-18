@@ -6,10 +6,10 @@ namespace WebApplication7.Models
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            // Look for any students.
+            
             if (context.Employee.Any())
             {
-                return;   // DB has been seeded
+                return; 
             }
 
             var emp_list = new Employee[]

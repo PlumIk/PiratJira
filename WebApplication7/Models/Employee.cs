@@ -15,7 +15,7 @@ namespace WebApplication7.Models
         [Required]
         public string Email { get; set; }
 
-        public virtual List<Project> Projects { get; set; } = new List<Project>();
+        public virtual List<Project> Projects { get; set; } = new ();
         public virtual List<ProjectEmplyee> ProjectEmplyees { get; set; } = new();
 
 

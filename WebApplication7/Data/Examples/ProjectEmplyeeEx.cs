@@ -6,7 +6,7 @@ namespace WebApplication7.Data.Examples
     {
         [DisplayName("Пират")]
         public int EmployeeID { get; set; }
-        [DisplayName("Квеста")]
+        [DisplayName("Квест")]
         public int ProjectID { get; set; }
         [DisplayName("Является первостепенно ответственным")]
         public string IsManager { get; set; } = "No";
